@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Call with Session Cookie</title>
+    <script>
+        async function callProtectedAPI() {
+            const apiUrl = 'http://localhost:8080/protected';
+            const sessionCookie = 'MTczMjk1MTA4MXxEWDhFQVFMX2dBQUJFQUVRQUFEX2tQLUFBQU1HYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FHYzNSeWFXNW5EQ1lBSkRNNU1EaGpaVGxpTFdGaFlqSXROR1V4TkMwNFpERTBMVFF5TmpaaU1EWTFZalkxTlFaemRISnBibWNNQ2dBSWRYTmxjbTVoYldVR2MzUnlhVzVuREE4QURVRnRZV0Z1SUVSaGEyaDNZWGtHYzNSeWFXNW5EQVlBQkhKdmJHVUdjM1J5YVc1bkRBZ0FCbk5sYm1sdmNnPT18Jy4MbW7R5EpGP9m9wS_MUQVbqUX8BgiFJJFdTZf7Rns=';
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Cookie': `session-name=${sessionCookie}`
+                    },
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Display response
+                document.getElementById('response').innerText =
+                    `Authenticated as ${data.name || 'Amaan Dakhway'} with ID: ${data.id || '3908ce9b-aab2-4e14-8d14-4266b065b655'} and role: ${data.role || 'senior'}`;
+            } catch (error) {
+                document.getElementById('response').innerText =
+                    `Failed to fetch data: ${error.message}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Call Protected API</h1>
+    <button onclick="callProtectedAPI()">Call API</button>
+    <p id="response"></p>
+</body>
+</html>

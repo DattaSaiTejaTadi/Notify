@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "9ba6cbfc-551a-408f-9b7b-365ddec681ac",
+		"name": "Notify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31536839",
+		"_collection_link": "https://planetary-astronaut-504765.postman.co/workspace/Personal~a0260f35-2348-4c69-aaa0-668fc7826afa/collection/31536839-9ba6cbfc-551a-408f-9b7b-365ddec681ac?action=share&source=collection_link&creator=31536839"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Teja\",\r\n\t\"domainid\":\"dst8074@gmail.com\",\r\n\t\t\"password\":\"admin@1234\",\r\n\t\t\"role\":\"Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"domainid\":\"dst8074@gmail.com\",\r\n\t\"password\":\"admin@1234\",\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/protected",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"protected"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMembers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "notifyMemberAmaan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userID\":\"0faec47c-9e6c-4787-b156-343cbc4f1209\",\r\n    \"message\":\"this is ur message222\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/notifyMember",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"notifyMember"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NotifyTeja",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userID\":\"ccaf3f9f-8602-416a-b422-14b940c8e85c\",\r\n    \"message\":\"hello\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/notifyMember",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"notifyMember"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
