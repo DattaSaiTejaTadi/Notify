@@ -13,7 +13,7 @@ type store struct {
 }
 
 func New(password string) *store {
-	dsn := fmt.Sprintf("postgresql://postgres:%s@db.qehkntqehiukjqlbmygr.supabase.co:5432/postgres", password)
+	dsn := fmt.Sprintf("postgresql://postgres.qehkntqehiukjqlbmygr:%s@aws-0-us-west-1.pooler.supabase.com:5432/postgres", password)
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {
 		log.Fatalf("Could not connect to the database: %v \n issue with %v", err, dsn)
