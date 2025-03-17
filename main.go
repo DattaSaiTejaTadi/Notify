@@ -19,13 +19,13 @@ func main() {
 	if err != nil {
 		log.Fatal("Error while loading env")
 	}
-	dbUserName := os.Getenv("DB_Username")
+	//dbUserName := os.Getenv("DB_Username")
 	dbPassword := os.Getenv("DB_Password")
-	store := store.New(dbUserName, dbPassword)
-	err = store.ResetUserActiveStates()
-	if err != nil {
-		log.Fatal("Issue setting up the DB")
-	}
+	store := store.New(dbPassword)
+	// err = store.ResetUserActiveStates()
+	// if err != nil {
+	// 	log.Fatal("Issue setting up the DB")
+	// }
 	service := service.New(store)
 	handler := handler.New(service)
 

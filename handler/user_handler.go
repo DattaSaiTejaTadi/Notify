@@ -56,7 +56,7 @@ func (h *handler) LoginUser(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("password")
 	user, err := h.service.LoginUser(domainid, password)
 	if err != nil {
-		http.Error(w, "Login failed", http.StatusUnauthorized)
+		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	}
 

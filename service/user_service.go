@@ -4,6 +4,7 @@ import (
 	"Notify/models"
 	"errors"
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/google/uuid"
@@ -39,6 +40,8 @@ func (s *service) RegisterUser(name, domainID, password, role string) (*models.U
 
 func (s *service) LoginUser(domainID, password string) (*models.User, error) {
 	user, err := s.store.GetUserByDomainID(domainID)
+	log.Println(domainID, password)
+	log.Println(user)
 	if err != nil || bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)) != nil {
 		return nil, errors.New("invalid credentials")
 	}

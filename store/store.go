@@ -2,18 +2,19 @@ package store
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 )
 
 type store struct {
 	DB *sql.DB
 }
 
-func New(username, password string) *store {
-	dsn := username + ":" + password + "@tcp(127.0.0.1:3306)/user_management"
-	db, err := sql.Open("mysql", dsn)
+func New(password string) *store {
+	dsn := fmt.Sprintf("postgresql://postgres:%s@db.qehkntqehiukjqlbmygr.supabase.co:5432/postgres", password)
+	db, err := sql.Open("postgres", dsn)
 	if err != nil {
 		log.Fatalf("Could not connect to the database: %v \n issue with %v", err, dsn)
 	}
@@ -21,6 +22,7 @@ func New(username, password string) *store {
 	if err = db.Ping(); err != nil {
 		log.Fatalf("Could not ping the database: %v", err)
 	}
+
 	return &store{
 		DB: db,
 	}
