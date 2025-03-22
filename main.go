@@ -20,10 +20,11 @@ func main() {
 	//dbUserName := os.Getenv("DB_Username")
 	dbPassword := os.Getenv("DB_Password")
 	store := store.New(dbPassword)
-	// err = store.ResetUserActiveStates()
-	// if err != nil {
-	// 	log.Fatal("Issue setting up the DB")
-	// }
+	defer store.DB.Close()
+	err := store.ResetUserActiveStates()
+	if err != nil {
+		log.Fatal("Issue setting up the DB")
+	}
 	service := service.New(store)
 	handler := handler.New(service)
 
