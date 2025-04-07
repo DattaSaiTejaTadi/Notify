@@ -44,7 +44,7 @@ func main() {
 	http.HandleFunc("/notifyMember", middelware.ValidateJWT(handler.Notify, &models.Validations{Role: "senior"}))
 	http.HandleFunc("/getAllUsers", middelware.ValidateJWT(handler.GetAllUsers, &models.Validations{Role: "admin"}))
 	http.HandleFunc("/deleteUser", middelware.ValidateJWT(handler.DeleteUser, &models.Validations{Role: "admin"}))
-
+	http.HandleFunc("/statusCheck", handler.StatusCheck)
 	log.Println("Server starting on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

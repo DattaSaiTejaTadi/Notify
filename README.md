@@ -1,1 +1,1 @@
-This is NotiFyir Application !
+This is NoteFYI-R Application!

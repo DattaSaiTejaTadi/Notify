@@ -289,3 +289,14 @@ func (h *handler) DeleteUser(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusNoContent)
 }
+
+// Status check
+func (h *handler) StatusCheck(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Invalid HTTP method", http.StatusMethodNotAllowed)
+		return
+	}
+	status := r.URL.Query().Get("status")
+	log.Println("status", status)
+	w.WriteHeader(http.StatusOK)
+}
