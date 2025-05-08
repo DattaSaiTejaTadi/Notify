@@ -3,11 +3,11 @@ package service
 import "Notify/store"
 
 type service struct {
-	store store.Store
+	Store store.Store
 }
 
 func New(store store.Store) *service {
 	return &service{
-		store: store,
+		Store: store,
 	}
 }

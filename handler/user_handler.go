@@ -34,7 +34,7 @@ func (h *handler) RegisterUser(w http.ResponseWriter, r *http.Request) {
 	role := r.FormValue("role")
 	user, err := h.service.RegisterUser(name, domainid, password, role)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 	json.NewEncoder(w).Encode(user)

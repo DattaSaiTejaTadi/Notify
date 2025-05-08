@@ -32,14 +32,14 @@ func (s *service) RegisterUser(name, domainID, password, role string) (*models.U
 		ActiveState: false,
 	}
 
-	if err := s.store.CreateUser(user); err != nil {
+	if err := s.Store.CreateUser(user); err != nil {
 		return nil, err
 	}
 	return &user, nil
 }
 
 func (s *service) LoginUser(domainID, password string) (*models.User, error) {
-	user, err := s.store.GetUserByDomainID(domainID)
+	user, err := s.Store.GetUserByDomainID(domainID)
 	log.Println(domainID, password)
 	log.Println(user)
 	if err != nil || bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)) != nil {
@@ -48,11 +48,11 @@ func (s *service) LoginUser(domainID, password string) (*models.User, error) {
 	return user, nil
 }
 func (s *service) GetMembers() ([]models.UserResponse, error) {
-	users, err := s.store.GetMembers()
+	users, err := s.Store.GetMembers()
 	return users, err
 }
 func (s *service) GetAllUsers() ([]models.UserResponse, error) {
-	users, err := s.store.GetAllUsers()
+	users, err := s.Store.GetAllUsers()
 	return users, err
 }
 func (s *service) DeleteUser(userID string) error {
@@ -61,8 +61,8 @@ func (s *service) DeleteUser(userID string) error {
 }
 
 func (s *service) UpdateActivityAsTrue(userID string) error {
-	return s.store.UpdateActivityAsTrue(userID)
+	return s.Store.UpdateActivityAsTrue(userID)
 }
 func (s *service) UpdateActivityAsFalse(userID string) error {
-	return s.store.UpdateActivityAsFalse(userID)
+	return s.Store.UpdateActivityAsFalse(userID)
 }
