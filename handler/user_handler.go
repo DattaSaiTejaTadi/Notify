@@ -33,6 +33,10 @@ func (h *handler) RegisterUser(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("password")
 	role := r.FormValue("role")
 	user, err := h.service.RegisterUser(name, domainid, password, role)
+	if err != nil && err.Error() == "issue in saving user" {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

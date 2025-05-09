@@ -9,19 +9,21 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
 
-	// err := godotenv.Load("./config/.env")
-	// if err != nil {
-	// 	log.Fatal("Error while loading env")
-	// }
-	//dbUserName := os.Getenv("DB_Username")
+	err := godotenv.Load("./config/.env")
+	if err != nil {
+		log.Fatal("Error while loading env")
+	}
+	// dbUserName := os.Getenv("DB_Username")
 	dbPassword := os.Getenv("DB_Password")
 	store := store.New(dbPassword)
 	defer store.DB.Close()
-	err := store.ResetUserActiveStates()
+	err = store.ResetUserActiveStates()
 	if err != nil {
 		log.Fatal("Issue setting up the DB")
 	}

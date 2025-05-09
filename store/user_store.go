@@ -2,13 +2,17 @@ package store
 
 import (
 	"Notify/models"
+	"errors"
 	"log"
 )
 
 func (s *store) CreateUser(user models.User) error {
 	query := `INSERT INTO users (id, name, domainid, password,role, active_state) VALUES ($1, $2, $3, $4, $5, $6)`
 	_, err := s.DB.Exec(query, user.ID, user.Name, user.DomainID, user.Password, user.Role, user.ActiveState)
-	return err
+	if err != nil {
+		return errors.New("issue in saving user")
+	}
+	return nil
 }
 
 func (s *store) ResetUserActiveStates() error {
